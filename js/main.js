@@ -174,7 +174,7 @@ carousel.addEventListener("pointermove", e => {
 
     const diff = e.clientX - startX;
 
-    const activeCard = document.querySelector(".carousel-card.active");
+    const activeCard = cards[currentIndex];
 
     activeCard.style.transform =
         `translate(-50%, -50%) scale(1) rotateY(${diff * 0.05}deg)`;
@@ -201,7 +201,7 @@ carousel.addEventListener("pointerup", e => {
 // 3D Tilt on Mouse Move (active card only)
 
 carousel.addEventListener("mousemove", e => {
-    const activeCard = document.querySelector(".carousel-card.active");
+    const activeCard = cards[currentIndex];
     if (!activeCard || isDragging) return;
 
     const rect = activeCard.getBoundingClientRect();
