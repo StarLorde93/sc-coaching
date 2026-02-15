@@ -96,7 +96,7 @@ document.querySelectorAll(".coaching-card").forEach(card => {
 });
 
 // ===============================
-// Premium Coaching Carousel
+// CLEAN PREMIUM CAROUSEL
 // ===============================
 
 const carousel = document.getElementById("coachingCarousel");
@@ -104,19 +104,12 @@ const cards = document.querySelectorAll(".carousel-card");
 const dotsContainer = document.getElementById("carouselDots");
 
 if (carousel && cards.length) {
-let isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-window.addEventListener("resize", () => {
-    isMobile = window.matchMedia("(max-width: 768px)").matches;
-    updateCarousel();
-});
-
 
 let currentIndex = 0;
 let autoRotate;
 let isDragging = false;
 let startX = 0;
-let rotateInterval = 7000;
+const rotateInterval = 5000;
 
 // Create dots
 cards.forEach((_, index) => {
@@ -137,24 +130,18 @@ function updateDots() {
 }
 
 function updateCarousel() {
+
     cards.forEach((card, index) => {
         card.classList.remove("active", "left", "right");
-        card.style.transform = "";
 
-        if (isMobile) {
-            if (index === currentIndex) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        } else {
-            if (index === currentIndex) {
-                card.classList.add("active");
-            } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
-                card.classList.add("left");
-            } else if (index === (currentIndex + 1) % cards.length) {
-                card.classList.add("right");
-            }
+        if (index === currentIndex) {
+            card.classList.add("active");
+        } 
+        else if (index === (currentIndex - 1 + cards.length) % cards.length) {
+            card.classList.add("left");
+        } 
+        else if (index === (currentIndex + 1) % cards.length) {
+            card.classList.add("right");
         }
     });
 
@@ -177,27 +164,12 @@ function resetAutoRotate() {
 
 // Pause on hover
 carousel.addEventListener("mouseenter", () => clearInterval(autoRotate));
-carousel.addEventListener("mouseleave", () => {
-    updateCarousel();
-    startAutoRotate();
-});
+carousel.addEventListener("mouseleave", startAutoRotate);
 
 // Drag
 carousel.addEventListener("pointerdown", e => {
     isDragging = true;
     startX = e.clientX;
-});
-
-carousel.addEventListener("pointermove", e => {
-    if (!isDragging) return;
-
-    const diff = e.clientX - startX;
-    const activeCard = cards[currentIndex];
-
-    if (!isMobile) {
-    activeCard.style.transform =
-        `translate(-50%, -50%) scale(1) rotateY(${diff * 0.08}deg)`;
-}
 });
 
 carousel.addEventListener("pointerup", e => {
@@ -207,7 +179,8 @@ carousel.addEventListener("pointerup", e => {
 
     if (diff > 80) {
         currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    } else if (diff < -80) {
+    } 
+    else if (diff < -80) {
         currentIndex = (currentIndex + 1) % cards.length;
     }
 
@@ -217,30 +190,6 @@ carousel.addEventListener("pointerup", e => {
     resetAutoRotate();
 });
 
-// 3D hover tilt (desktop only)
-
-if (!isMobile) {
-    carousel.addEventListener("mousemove", e => {
-        if (isDragging) return;
-
-        const activeCard = cards[currentIndex];
-        const rect = activeCard.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const width = rect.width;
-
-        const rotateY = ((x / width) - 0.5) * 10;
-
-        activeCard.style.transform =
-            `translate(-50%, -50%) scale(1) rotateY(${rotateY}deg)`;
-    });
-}
-
-
-carousel.addEventListener("mouseleave", () => {
-    updateCarousel();
-});
-
 updateCarousel();
 startAutoRotate();
-
 }
