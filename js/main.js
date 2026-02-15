@@ -188,8 +188,10 @@ carousel.addEventListener("pointermove", e => {
     const diff = e.clientX - startX;
     const activeCard = cards[currentIndex];
 
+    if (!isMobile) {
     activeCard.style.transform =
         `translate(-50%, -50%) scale(1) rotateY(${diff * 0.08}deg)`;
+}
 });
 
 carousel.addEventListener("pointerup", e => {
@@ -210,7 +212,6 @@ carousel.addEventListener("pointerup", e => {
 });
 
 // 3D hover tilt (desktop only)
-const isMobile = window.innerWidth <= 768;
 
 if (!isMobile) {
     carousel.addEventListener("mousemove", e => {
