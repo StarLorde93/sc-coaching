@@ -653,12 +653,12 @@ body::after {
 /* ================= DOTS ================= */
 
 .carousel-dots {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 14px;
+    gap: 16px;
     position: relative;
-    z-index: 10; /* FIX: ensures dots are above cards */
+    z-index: 10;
 }
 
 .carousel-dots span {
@@ -680,7 +680,7 @@ body::after {
 @media (max-width: 768px) {
 
     body {
-        padding-bottom: 90px; /* space for sticky button */
+        padding-bottom: 110px; /* space for sticky button */
     }
 
     .carousel {
