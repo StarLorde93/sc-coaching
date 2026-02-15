@@ -105,6 +105,9 @@ const dotsContainer = document.getElementById("carouselDots");
 
 if (carousel && cards.length) {
 
+const isMobile = window.innerWidth <= 768;
+
+
 let currentIndex = 0;
 let autoRotate;
 let isDragging = false;
@@ -200,20 +203,25 @@ carousel.addEventListener("pointerup", e => {
     resetAutoRotate();
 });
 
-// 3D hover tilt
-carousel.addEventListener("mousemove", e => {
-    if (isDragging) return;
+// 3D hover tilt (desktop only)
+const isMobile = window.innerWidth <= 768;
 
-    const activeCard = cards[currentIndex];
-    const rect = activeCard.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const width = rect.width;
+if (!isMobile) {
+    carousel.addEventListener("mousemove", e => {
+        if (isDragging) return;
 
-    const rotateY = ((x / width) - 0.5) * 12;
+        const activeCard = cards[currentIndex];
+        const rect = activeCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const width = rect.width;
 
-    activeCard.style.transform =
-        `translate(-50%, -50%) scale(1) rotateY(${rotateY}deg)`;
-});
+        const rotateY = ((x / width) - 0.5) * 10;
+
+        activeCard.style.transform =
+            `translate(-50%, -50%) scale(1) rotateY(${rotateY}deg)`;
+    });
+}
+
 
 carousel.addEventListener("mouseleave", () => {
     updateCarousel();
