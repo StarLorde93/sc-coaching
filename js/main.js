@@ -76,3 +76,21 @@ form.addEventListener("submit", async (e) => {
         alert("Something went wrong. Please try again.");
     }
 });
+// ===============================
+// Scroll Reveal Animation
+// ===============================
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+document.querySelectorAll(".coaching-card").forEach(card => {
+    card.classList.add("fade-in");
+    observer.observe(card);
+});
