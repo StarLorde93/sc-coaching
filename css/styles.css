@@ -376,16 +376,38 @@ body::after {
 }
 
 @media (max-width: 768px) {
+
     .footer-main {
-        text-align: left;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .footer-brand,
+    .footer-contact,
+    .footer-right {
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer-tagline {
+        margin: 0 auto;
     }
 
     .contact-row {
-        justify-content: flex-start;
+        justify-content: center;
     }
+
+    .footer-links {
+        align-items: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
 }
-
-
 
 
 /* ================= MOBILE STICKY CTA ================= */
