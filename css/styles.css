@@ -124,30 +124,30 @@ body::after {
 .hero-image::before {
     content: "";
     position: absolute;
-    width: 380px;
-    height: 380px;
+    width: 520px;
+    height: 520px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
     background:
-    radial-gradient(
-        circle at center,
-        rgba(59,130,246,0.40) 0%,
-        rgba(59,130,246,0.34) 10%,
-        rgba(59,130,246,0.28) 18%,
-        rgba(59,130,246,0.22) 26%,
-        rgba(59,130,246,0.18) 34%,
-        rgba(59,130,246,0.13) 42%,
-        rgba(59,130,246,0.09) 50%,
-        rgba(59,130,246,0.06) 58%,
-        rgba(59,130,246,0.04) 65%,
-        rgba(59,130,246,0.025) 72%,
-        rgba(59,130,246,0.015) 80%,
-        transparent 90%
-    );
-    filter: blur(60px);
-    z-index: 0;
+        radial-gradient(circle at center,
+            rgba(59,130,246,0.55) 0%,
+            rgba(59,130,246,0.45) 15%,
+            rgba(59,130,246,0.35) 30%,
+            rgba(59,130,246,0.25) 45%,
+            rgba(59,130,246,0.18) 60%,
+            rgba(59,130,246,0.12) 75%,
+            rgba(59,130,246,0.08) 85%,
+            rgba(59,130,246,0.04) 92%,
+            transparent 100%
+        );
+
+    filter: blur(90px);
+    opacity: 0.85;
+    mix-blend-mode: screen;
 }
+
 
 .hero-image img {
     position: relative;
@@ -602,6 +602,7 @@ body::after {
     max-width: 850px;
     height: 100%;
     transform-style: preserve-3d;
+    isolation: isolate;
 }
 
 .carousel-card {
@@ -643,7 +644,7 @@ body::after {
     transform: translate(-120%, -50%) scale(0.82) rotateY(20deg);
     opacity: 0.5;
     z-index: 2;
-    filter: blur(3px);
+    filter: blur(1.5px);
 }
 
 /* Right */
@@ -651,7 +652,7 @@ body::after {
     transform: translate(20%, -50%) scale(0.82) rotateY(-20deg);
     opacity: 0.5;
     z-index: 2;
-    filter: blur(3px);
+    filter: blur(1.5px);
 }
 
 /* ================= DOTS ================= */
