@@ -109,7 +109,7 @@ let currentIndex = 0;
 let autoRotate;
 let isDragging = false;
 let startX = 0;
-let rotateInterval = 5000;
+let rotateInterval = 7000;
 
 // Create dots
 cards.forEach((_, index) => {
