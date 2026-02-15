@@ -104,7 +104,13 @@ const cards = document.querySelectorAll(".carousel-card");
 const dotsContainer = document.getElementById("carouselDots");
 
 if (carousel && cards.length) {
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
+let isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+window.addEventListener("resize", () => {
+    isMobile = window.matchMedia("(max-width: 768px)").matches;
+    updateCarousel();
+});
+
 
 let currentIndex = 0;
 let autoRotate;
