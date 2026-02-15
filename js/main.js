@@ -103,6 +103,8 @@ const carousel = document.getElementById("coachingCarousel");
 const cards = document.querySelectorAll(".carousel-card");
 const dotsContainer = document.getElementById("carouselDots");
 
+if (carousel && cards.length) {
+
 let currentIndex = 0;
 let autoRotate;
 let isDragging = false;
@@ -130,6 +132,7 @@ function updateDots() {
 function updateCarousel() {
     cards.forEach((card, index) => {
         card.classList.remove("active", "left", "right");
+        card.style.transform = "";
 
         if (index === currentIndex) {
             card.classList.add("active");
@@ -159,25 +162,25 @@ function resetAutoRotate() {
 
 // Pause on hover
 carousel.addEventListener("mouseenter", () => clearInterval(autoRotate));
-carousel.addEventListener("mouseleave", startAutoRotate);
+carousel.addEventListener("mouseleave", () => {
+    updateCarousel();
+    startAutoRotate();
+});
 
-// Drag Support (mouse + touch unified)
-
+// Drag
 carousel.addEventListener("pointerdown", e => {
     isDragging = true;
     startX = e.clientX;
-    carousel.style.cursor = "grabbing";
 });
 
 carousel.addEventListener("pointermove", e => {
     if (!isDragging) return;
 
     const diff = e.clientX - startX;
-
     const activeCard = cards[currentIndex];
 
     activeCard.style.transform =
-        `translate(-50%, -50%) scale(1) rotateY(${diff * 0.05}deg)`;
+        `translate(-50%, -50%) scale(1) rotateY(${diff * 0.08}deg)`;
 });
 
 carousel.addEventListener("pointerup", e => {
@@ -192,34 +195,31 @@ carousel.addEventListener("pointerup", e => {
     }
 
     isDragging = false;
-    carousel.style.cursor = "grab";
 
     updateCarousel();
     resetAutoRotate();
 });
 
-// 3D Tilt on Mouse Move (active card only)
-
+// 3D hover tilt
 carousel.addEventListener("mousemove", e => {
-    const activeCard = cards[currentIndex];
-    if (!activeCard || isDragging) return;
+    if (isDragging) return;
 
+    const activeCard = cards[currentIndex];
     const rect = activeCard.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const width = rect.width;
 
-    const rotateY = ((x / width) - 0.5) * 15;
+    const rotateY = ((x / width) - 0.5) * 12;
 
     activeCard.style.transform =
         `translate(-50%, -50%) scale(1) rotateY(${rotateY}deg)`;
 });
 
-// Reset tilt when leaving
 carousel.addEventListener("mouseleave", () => {
     updateCarousel();
 });
 
-// Infinite loop illusion already handled via modulo logic
-
 updateCarousel();
 startAutoRotate();
+
+}
