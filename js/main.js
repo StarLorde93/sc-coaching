@@ -94,3 +94,132 @@ document.querySelectorAll(".coaching-card").forEach(card => {
     card.classList.add("fade-in");
     observer.observe(card);
 });
+
+// ===============================
+// Premium Coaching Carousel
+// ===============================
+
+const carousel = document.getElementById("coachingCarousel");
+const cards = document.querySelectorAll(".carousel-card");
+const dotsContainer = document.getElementById("carouselDots");
+
+let currentIndex = 0;
+let autoRotate;
+let isDragging = false;
+let startX = 0;
+let rotateInterval = 5000;
+
+// Create dots
+cards.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateCarousel();
+        resetAutoRotate();
+    });
+    dotsContainer.appendChild(dot);
+});
+
+function updateDots() {
+    document.querySelectorAll(".carousel-dots span")
+        .forEach((dot, index) => {
+            dot.classList.toggle("active-dot", index === currentIndex);
+        });
+}
+
+function updateCarousel() {
+    cards.forEach((card, index) => {
+        card.classList.remove("active", "left", "right");
+
+        if (index === currentIndex) {
+            card.classList.add("active");
+        } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
+            card.classList.add("left");
+        } else if (index === (currentIndex + 1) % cards.length) {
+            card.classList.add("right");
+        }
+    });
+
+    updateDots();
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+}
+
+function startAutoRotate() {
+    autoRotate = setInterval(nextSlide, rotateInterval);
+}
+
+function resetAutoRotate() {
+    clearInterval(autoRotate);
+    startAutoRotate();
+}
+
+// Pause on hover
+carousel.addEventListener("mouseenter", () => clearInterval(autoRotate));
+carousel.addEventListener("mouseleave", startAutoRotate);
+
+// Drag Support (mouse + touch unified)
+
+carousel.addEventListener("pointerdown", e => {
+    isDragging = true;
+    startX = e.clientX;
+    carousel.style.cursor = "grabbing";
+});
+
+carousel.addEventListener("pointermove", e => {
+    if (!isDragging) return;
+
+    const diff = e.clientX - startX;
+
+    const activeCard = document.querySelector(".carousel-card.active");
+
+    activeCard.style.transform =
+        `translateX(0) scale(1) rotateY(${diff * 0.05}deg)`;
+});
+
+carousel.addEventListener("pointerup", e => {
+    if (!isDragging) return;
+
+    const diff = e.clientX - startX;
+
+    if (diff > 80) {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    } else if (diff < -80) {
+        currentIndex = (currentIndex + 1) % cards.length;
+    }
+
+    isDragging = false;
+    carousel.style.cursor = "grab";
+
+    updateCarousel();
+    resetAutoRotate();
+});
+
+// 3D Tilt on Mouse Move (active card only)
+
+carousel.addEventListener("mousemove", e => {
+    const activeCard = document.querySelector(".carousel-card.active");
+    if (!activeCard || isDragging) return;
+
+    const rect = activeCard.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+
+    const rotateY = ((x / width) - 0.5) * 15;
+
+    activeCard.style.transform =
+        `translateX(0) scale(1) rotateY(${rotateY}deg)`;
+});
+
+// Reset tilt when leaving
+carousel.addEventListener("mouseleave", () => {
+    updateCarousel();
+});
+
+// Infinite loop illusion already handled via modulo logic
+
+updateCarousel();
+startAutoRotate();
