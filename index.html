@@ -1,10 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Aquahills</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SC Coaching | Fitness & Nutrition</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0b0f19" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Firebase SDKs -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js" defer></script>
 </head>
+
 <body>
-  <h1>Welcome to Aquahills</h1>
-  <p>My website is live on GitHub Pages.</p>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="assets/logo-sc.svg" alt="SC Coaching Logo" />
+            </a>
+
+            <button id="openConsultation" class="cta-btn desktop-cta">
+                Schedule Your First Consultation
+            </button>
+        </div>
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero">
+        <div class="container hero-container">
+
+            <div class="hero-text">
+                <h1>Transform Your Body With Expert Guidance</h1>
+                <p>
+                    Personalized fitness & nutrition coaching designed to help you
+                    build strength, lose fat, and achieve sustainable results.
+                </p>
+
+                <button id="openConsultationHero" class="cta-btn">
+                    Schedule Your First Consultation
+                </button>
+            </div>
+
+            <div class="hero-image">
+                <!-- Replace later with your actual image -->
+                <img src="assets/coach-main.jpg" alt="Coach Image" />
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= COACHING CARD SECTION ================= -->
+    <section class="coaching-section">
+        <div class="container">
+
+            <div class="coaching-card">
+                <h2>Fitness & Nutrition Coaching</h2>
+                <p class="card-subtitle">
+                    Structured programs tailored specifically for your goals.
+                </p>
+
+                <ul class="features-list">
+                    <li>✔ Expert crafted programs</li>
+                    <li>✔ Customized meal plans</li>
+                    <li>✔ Dedicated nutrition coach</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= CONSULTATION MODAL ================= -->
+    <div id="consultationModal" class="modal hidden">
+        <div class="modal-content">
+
+            <span id="closeModal" class="close-btn">&times;</span>
+
+            <h2>Book Your First Consultation</h2>
+
+            <form id="consultationForm">
+
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Full Name" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Mobile Number" required />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" value="₹298.00" disabled />
+                </div>
+
+                <button type="submit" class="pay-btn">
+                    Proceed to Payment
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- ================= TESTIMONIAL SECTION (COMMENTED OUT) ================= -->
+    <!--
+    <section class="testimonials">
+        <div class="container">
+            <h2>Client Transformations</h2>
+            <div class="testimonial-grid">
+                Add client images here later
+            </div>
+        </div>
+    </section>
+    -->
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+
+            <div class="footer-brand">
+                <img src="assets/logo-sc.svg" alt="SC Coaching Logo" />
+                <p>
+                    Premium online fitness & nutrition coaching designed for
+                    serious transformation.
+                </p>
+            </div>
+
+            <div class="footer-contact">
+                <p>
+                    📞 <a href="tel:+918888003430">+91 8888003430</a>
+                </p>
+                <p>
+                    ✉ <a href="mailto:support@sccoaching.com">
+                        support@sccoaching.com
+                    </a>
+                </p>
+                <p>
+                    Pune, Maharashtra, India
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Return & Refund</a>
+            </div>
+
+            <div class="footer-social">
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">Facebook</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="year"></span> SC Coaching. All rights reserved.
+        </div>
+    </footer>
+
+
+    <!-- ================= MOBILE STICKY CTA ================= -->
+    <button id="mobileStickyCTA" class="cta-btn mobile-sticky">
+        Schedule Consultation
+    </button>
+
+
+    <!-- ================= SERVICE WORKER ================= -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+
+        // Dynamic Year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
 </body>
 </html>
