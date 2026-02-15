@@ -7,11 +7,22 @@
 }
 
 body {
+    position: relative;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(circle at top left, #111827, #0b0f19 60%);
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* Noise layer to remove gradient banding */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+    z-index: 0;
 }
 
 .container {
@@ -90,17 +101,45 @@ body {
     color: #cbd5e1;
 }
 
+
 .hero-image {
+    position: relative;
     flex: 1;
     text-align: center;
 }
 
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, transparent 65%);
+    filter: blur(40px);
+    z-index: 0;
+}
+
 .hero-image img {
+    position: relative;
+    z-index: 1;
     width: 100%;
     max-width: 420px;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(59,130,246,0.25);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
+
+.hero-image img:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.8),
+        0 0 90px rgba(59,130,246,0.35);
+}
+
 
 /* ================= COACHING CARD ================= */
 
@@ -109,15 +148,17 @@ body {
 }
 
 .coaching-card {
-    background: rgba(255, 255, 255, 0.05);
     padding: 50px;
     border-radius: 24px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(145deg, #131c2d, #0f172a);
+    border: 1px solid rgba(59,130,246,0.25);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(59,130,246,0.12);
     text-align: center;
-    transition: 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
 
 .coaching-card:hover {
     transform: translateY(-6px);
@@ -357,6 +398,7 @@ body {
     transform: translateX(-50%);
     width: 90%;
     z-index: 3000;
+    animation: slideUp 0.6s ease forwards;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -395,10 +437,7 @@ body {
         padding: 30px;
     }
 
-    .footer-container {
-        flex-direction: column;
-        gap: 25px;
-    }
+
 }
 
 /* ================= MICRO ANIMATIONS ================= */
@@ -445,10 +484,6 @@ body {
 }
 
 /* Coaching Card Hover Enhancement */
-.coaching-card {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
 .coaching-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 45px rgba(59, 130, 246, 0.3);
@@ -471,9 +506,6 @@ body {
 }
 
 /* Sticky CTA Slide Up */
-.mobile-sticky {
-    animation: slideUp 0.6s ease forwards;
-}
 
 @keyframes slideUp {
     from {
