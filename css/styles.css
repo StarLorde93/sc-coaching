@@ -1,310 +1,101 @@
-/* ================= GLOBAL ================= */
+/* ================= MICRO ANIMATIONS ================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Fade In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top left, #111827, #0b0f19 60%);
-    color: #ffffff;
-    line-height: 1.6;
-    overflow-x: hidden;
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
+/* Hero Animation */
+.hero-text h1,
+.hero-text p,
+.hero-text .cta-btn {
+    animation: heroFade 1s ease forwards;
+    opacity: 0;
 }
 
-/* ================= NAVBAR ================= */
+.hero-text h1 { animation-delay: 0.2s; }
+.hero-text p { animation-delay: 0.4s; }
+.hero-text .cta-btn { animation-delay: 0.6s; }
 
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(10, 15, 25, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+@keyframes heroFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Button Press Effect */
+.cta-btn:active,
+.pay-btn:active {
+    transform: scale(0.97);
 }
 
-.logo img {
-    height: 42px;
-}
-
-/* ================= CTA BUTTON ================= */
-
-.cta-btn {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #ffffff;
-    padding: 12px 26px;
-    border: none;
-    border-radius: 40px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
-}
-
-.cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
-}
-
-/* ================= HERO ================= */
-
-.hero {
-    padding: 80px 0;
-}
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.hero-text h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.hero-text p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #cbd5e1;
-}
-
-.hero-image {
-    flex: 1;
-    text-align: center;
-}
-
-.hero-image img {
-    width: 100%;
-    max-width: 420px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* ================= COACHING CARD ================= */
-
-.coaching-section {
-    padding: 60px 0;
-}
-
+/* Coaching Card Hover Enhancement */
 .coaching-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 50px;
-    border-radius: 24px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    transition: 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .coaching-card:hover {
-    transform: translateY(-6px);
-    border: 1px solid rgba(59, 130, 246, 0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(59, 130, 246, 0.3);
 }
 
-.coaching-card h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.card-subtitle {
-    color: #94a3b8;
-    margin-bottom: 25px;
-}
-
-.features-list {
-    list-style: none;
-}
-
-.features-list li {
-    margin-bottom: 12px;
-    font-size: 16px;
-    color: #e2e8f0;
-}
-
-/* ================= MODAL ================= */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-
-.hidden {
-    display: none;
-}
-
+/* Modal Animation */
 .modal-content {
-    background: #111827;
-    padding: 40px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 420px;
-    position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    animation: modalPop 0.4s ease forwards;
 }
 
-.modal-content h2 {
-    margin-bottom: 20px;
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1px solid #1f2937;
-    background: #0f172a;
-    color: #ffffff;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #3b82f6;
-}
-
-.pay-btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #ffffff;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* ================= FOOTER ================= */
-
-.footer {
-    margin-top: 80px;
-    background: rgba(15, 23, 42, 0.9);
-    padding: 60px 0 30px;
-    text-align: center;
-}
-
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px;
-    margin-bottom: 30px;
-}
-
-.footer-brand img {
-    height: 45px;
-    margin-bottom: 15px;
-}
-
-.footer-contact a,
-.footer-links a,
-.footer-social a {
-    color: #cbd5e1;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: 0.3s;
-}
-
-.footer-contact a:hover,
-.footer-links a:hover,
-.footer-social a:hover {
-    color: #3b82f6;
-}
-
-.footer-bottom {
-    font-size: 14px;
-    color: #64748b;
-}
-
-/* ================= MOBILE STICKY CTA ================= */
-
+/* Sticky CTA Slide Up */
 .mobile-sticky {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    z-index: 3000;
+    animation: slideUp 0.6s ease forwards;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 992px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
     }
-
-    .hero-text h1 {
-        font-size: 36px;
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
     }
 }
 
-@media (max-width: 768px) {
+/* Table Row Hover */
+#consultationsTable tr:hover {
+    background: rgba(59, 130, 246, 0.08);
+    transition: background 0.3s ease;
+}
 
-    .desktop-cta {
-        display: none;
-    }
+/* Success Pulse */
+.success-pulse {
+    animation: pulse 1.2s ease-in-out infinite;
+}
 
-    .mobile-sticky {
-        display: block;
-    }
-
-    .cta-btn {
-        padding: 10px 18px;
-        font-size: 14px;
-    }
-
-    .hero {
-        padding: 60px 0;
-    }
-
-    .coaching-card {
-        padding: 30px;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        gap: 25px;
-    }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
