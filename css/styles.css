@@ -594,7 +594,7 @@ body::after {
     align-items: center;
     justify-content: center;
     overflow: visible;
-    padding: 120px 0;
+    padding: 140px 0;
 }
 
 .carousel {
@@ -686,16 +686,28 @@ body::after {
 
 @media (max-width: 768px) {
 
-    .carousel-card {
-        width: 92%;
+    body {
+        padding-bottom: 90px;
+    }
+    .carousel {
+        position: relative;
     }
 
-    .carousel-card.left,
-    .carousel-card.right {
-        transform: translate(-50%, -50%) scale(0.92);
-        opacity: 0;
-        pointer-events: none;
+    .carousel-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none !important;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .carousel-card:not(.active) {
+        display: none;
+    }
+
+    .carousel-wrapper {
+        padding: 40px 0;
     }
 
 }
-
