@@ -556,3 +556,85 @@ body::after {
     70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
     100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
+
+/* ================= PREMIUM CAROUSEL ================= */
+
+.carousel-wrapper {
+    position: relative;
+    perspective: 1600px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.carousel-card {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.8s cubic-bezier(.22,.61,.36,1),
+                opacity 0.6s ease,
+                filter 0.6s ease;
+    cursor: grab;
+}
+
+/* Active Center */
+.carousel-card.active {
+    transform: translateX(0) scale(1) rotateY(0deg);
+    z-index: 5;
+    opacity: 1;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Left */
+.carousel-card.left {
+    transform: translateX(-70%) scale(0.82) rotateY(25deg);
+    opacity: 0.55;
+    filter: blur(3px);
+    z-index: 2;
+}
+
+/* Right */
+.carousel-card.right {
+    transform: translateX(70%) scale(0.82) rotateY(-25deg);
+    opacity: 0.55;
+    filter: blur(3px);
+    z-index: 2;
+}
+
+/* ================= DOTS ================= */
+
+.carousel-dots {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.carousel-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dots span.active-dot {
+    background: #3b82f6;
+    box-shadow: 0 0 10px rgba(59,130,246,0.7);
+}
+
+/* Drag cursor */
+.carousel:active .carousel-card {
+    cursor: grabbing;
+}
