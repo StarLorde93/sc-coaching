@@ -177,7 +177,7 @@ carousel.addEventListener("pointermove", e => {
     const activeCard = document.querySelector(".carousel-card.active");
 
     activeCard.style.transform =
-        `translateX(0) scale(1) rotateY(${diff * 0.05}deg)`;
+        `translate(-50%, -50%) scale(1) rotateY(${diff * 0.05}deg)`;
 });
 
 carousel.addEventListener("pointerup", e => {
@@ -211,7 +211,7 @@ carousel.addEventListener("mousemove", e => {
     const rotateY = ((x / width) - 0.5) * 15;
 
     activeCard.style.transform =
-        `translateX(0) scale(1) rotateY(${rotateY}deg)`;
+        `translate(-50%, -50%) scale(1) rotateY(${rotateY}deg)`;
 });
 
 // Reset tilt when leaving
