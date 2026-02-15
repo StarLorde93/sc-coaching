@@ -56,9 +56,14 @@ payBtn.addEventListener("click", async () => {
             paidAt: new Date()
         });
 
-        alert("Payment Successful!");
+        // 🔥 Replace alert with this
+        payBtn.textContent = "Payment Successful ✓";
+        payBtn.classList.add("success-pulse");
+        payBtn.disabled = true;
 
-        window.location.href = "index.html?success=true";
+        setTimeout(() => {
+            window.location.href = "index.html?success=true";
+        }, 1500);
 
     } catch (error) {
         console.error("Payment update error:", error);
@@ -66,3 +71,4 @@ payBtn.addEventListener("click", async () => {
     }
 
 });
+
