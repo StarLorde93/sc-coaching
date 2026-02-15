@@ -104,9 +104,7 @@ const cards = document.querySelectorAll(".carousel-card");
 const dotsContainer = document.getElementById("carouselDots");
 
 if (carousel && cards.length) {
-
-const isMobile = window.innerWidth <= 768;
-
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 let currentIndex = 0;
 let autoRotate;
@@ -137,12 +135,20 @@ function updateCarousel() {
         card.classList.remove("active", "left", "right");
         card.style.transform = "";
 
-        if (index === currentIndex) {
-            card.classList.add("active");
-        } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
-            card.classList.add("left");
-        } else if (index === (currentIndex + 1) % cards.length) {
-            card.classList.add("right");
+        if (isMobile) {
+            if (index === currentIndex) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        } else {
+            if (index === currentIndex) {
+                card.classList.add("active");
+            } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
+                card.classList.add("left");
+            } else if (index === (currentIndex + 1) % cards.length) {
+                card.classList.add("right");
+            }
         }
     });
 
