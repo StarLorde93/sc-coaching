@@ -685,7 +685,7 @@ body::after {
         /* Adjust percentages to control how much "peeks" out */
         transform: translate(-115%, -50%) scale(0.85); 
         z-index: 5;
-        filter: blur(4px);
+        filter: blur(6px);
     }
 
     /* Right Card: Slide right and shrink slightly */
@@ -693,7 +693,7 @@ body::after {
         opacity: 0.4;
         transform: translate(15%, -50%) scale(0.85);
         z-index: 5;
-        filter: blur(4px);
+        filter: blur(6px);
     }
 
     .coaching-card h2 {
