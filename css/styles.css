@@ -25,7 +25,7 @@ body::after {
     inset: 0;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
-    z-index: 0;
+    z-index: -1;
 }
 
 .container {
@@ -35,15 +35,17 @@ body::after {
 }
 
 /* ================= NAVBAR ================= */
-
 .navbar {
-    position: sticky;
+    position: fixed; /* Changed from sticky to fixed for total lock */
     top: 0;
-    z-index: 1000;
-    background: rgba(10, 15, 25, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    left: 0;
+    width: 100%;
+    z-index: 5000; /* Increased to stay above everything including carousel */
+    background: rgba(10, 15, 25, 0.9); /* Slightly darker/more opaque */
+    backdrop-filter: blur(20px); /* Increased blur for that "barely visible" look */
+    -webkit-backdrop-filter: blur(20px); /* Safari support */
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-container {
@@ -78,7 +80,7 @@ body::after {
 /* ================= HERO ================= */
 
 .hero {
-    padding: 80px 0;
+    padding: 140px 0 80px;
 }
 
 .hero-container {
@@ -648,7 +650,9 @@ body::after {
 
 /* MOBILE CAROUSEL */
 @media (max-width: 768px) {
-
+.hero {
+        padding: 120px 0 60px;
+    }
     .carousel {
         height: 340px;
         /* Ensure content doesn't spill horizontally causing scrollbars */
