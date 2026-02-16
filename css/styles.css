@@ -14,6 +14,9 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
+html, body {
+    overflow-x: hidden;
+}
 
 /* Noise layer to remove gradient banding */
 body::after {
@@ -637,6 +640,7 @@ body::after {
 
     .carousel {
         height: auto;
+        overflow: hidden;
     }
 
     .carousel-card {
@@ -655,4 +659,11 @@ body::after {
     .carousel-wrapper {
         padding: 40px 0 20px;
     }
+        body {
+        padding-bottom: 110px;
+    }
+}
+
+.carousel-wrapper {
+    overflow: hidden;
 }
