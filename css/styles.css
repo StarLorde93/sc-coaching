@@ -646,48 +646,49 @@ body::after {
 @media (max-width: 768px) {
 
     .carousel {
-        height: 350px;
-        overflow: visible;
+        height: 320px;
+        position: relative;
     }
 
     .carousel-card {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    opacity: 1 !important;
-    width: 85%;
-    margin: 0 auto 20px auto;
-    padding: 25px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    }
-    .carousel-card.left,
-    .carousel-card.right,
-    .carousel-card.active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 320px;
+        padding: 25px;
+        opacity: 0;
         transform: none;
-        opacity: 1;
+        transition: opacity 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+
+    .carousel-card.active {
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .carousel-card.left,
+    .carousel-card.right {
+        opacity: 0;
+    }
+
     .coaching-card h2 {
-        font-size: 26px;
+        font-size: 24px;
         line-height: 1.2;
     }
 
-    .carousel-card.active {
-        display: block;
+    .carousel-wrapper {
+        padding: 40px 0 60px;
     }
 
-    .carousel-wrapper {
-        padding: 40px 0 20px;
-        padding-bottom: 60px;
-        overflow: visible;
-    }
-        body {
+    body {
         padding-bottom: 110px;
     }
 }
+
 
 .carousel-wrapper {
     overflow-x: hidden;
