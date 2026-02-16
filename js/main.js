@@ -94,3 +94,101 @@ document.querySelectorAll(".coaching-card").forEach(card => {
     card.classList.add("fade-in");
     observer.observe(card);
 });
+// ===============================
+// CLEAN PREMIUM CAROUSEL
+// ===============================
+
+const carousel = document.getElementById("coachingCarousel");
+const cards = document.querySelectorAll(".carousel-card");
+const dotsContainer = document.getElementById("carouselDots");
+
+if (carousel && cards.length) {
+
+let currentIndex = 0;
+let autoRotate;
+let isDragging = false;
+let startX = 0;
+const rotateInterval = 5000;
+
+// Create dots
+cards.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateCarousel();
+        resetAutoRotate();
+    });
+    dotsContainer.appendChild(dot);
+});
+
+function updateDots() {
+    document.querySelectorAll(".carousel-dots span")
+        .forEach((dot, index) => {
+            dot.classList.toggle("active-dot", index === currentIndex);
+        });
+}
+
+function updateCarousel() {
+
+    cards.forEach((card, index) => {
+        card.classList.remove("active", "left", "right");
+
+        if (index === currentIndex) {
+            card.classList.add("active");
+        } 
+        else if (index === (currentIndex - 1 + cards.length) % cards.length) {
+            card.classList.add("left");
+        } 
+        else if (index === (currentIndex + 1) % cards.length) {
+            card.classList.add("right");
+        }
+    });
+
+    updateDots();
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+}
+
+function startAutoRotate() {
+    autoRotate = setInterval(nextSlide, rotateInterval);
+}
+
+function resetAutoRotate() {
+    clearInterval(autoRotate);
+    startAutoRotate();
+}
+
+// Pause on hover
+carousel.addEventListener("mouseenter", () => clearInterval(autoRotate));
+carousel.addEventListener("mouseleave", startAutoRotate);
+
+// Drag
+carousel.addEventListener("pointerdown", e => {
+    isDragging = true;
+    startX = e.clientX;
+});
+
+carousel.addEventListener("pointerup", e => {
+    if (!isDragging) return;
+
+    const diff = e.clientX - startX;
+
+    if (diff > 80) {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    } 
+    else if (diff < -80) {
+        currentIndex = (currentIndex + 1) % cards.length;
+    }
+
+    isDragging = false;
+
+    updateCarousel();
+    resetAutoRotate();
+});
+
+updateCarousel();
+startAutoRotate();
+}
