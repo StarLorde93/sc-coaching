@@ -646,7 +646,7 @@ body::after {
 @media (max-width: 768px) {
 
     .carousel {
-        height: 320px;
+        height: 350px;
         overflow: visible;
     }
 
