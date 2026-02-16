@@ -588,9 +588,10 @@ body::after {
     max-width: 650px;
     height: 320px;
     transform: translate(-50%, -50%);
-    transition: transform 0.6s cubic-bezier(.22,.61,.36,1), opacity 0.4s ease;
+    transition: transform 0.6s cubic-bezier(.22,.61,.36,1), opacity 0.4s ease, filter 0.6s ease;
     backface-visibility: hidden;
     opacity: 0;
+    filter: blur(0px);
 }
 /* Prevent text selection inside carousel */
 .carousel-card,
@@ -611,6 +612,7 @@ body::after {
     transform: translate(-90%, -50%) translateZ(-60px) scale(0.85);
     opacity: 0.5;
     z-index: 3;
+    filter: blur(4px);
 }
 
 /* Right */
@@ -618,6 +620,7 @@ body::after {
     transform: translate(-10%, -50%) translateZ(-60px) scale(0.85);
     opacity: 0.5;
     z-index: 3;
+    filter: blur(4px);
 }
 
 /* Dots */
@@ -643,7 +646,7 @@ body::after {
     box-shadow: 0 0 10px rgba(59,130,246,0.9);
 }
 
-/* MOBILE CAROUSEL FIX */
+/* MOBILE CAROUSEL */
 @media (max-width: 768px) {
 
     .carousel {
@@ -660,7 +663,7 @@ body::after {
         
         /* Re-enable opacity for side cards */
         opacity: 0; 
-        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease, filter 0.5s ease;
         
         /* Ensure flex layout inside card remains */
         display: flex;
@@ -673,6 +676,7 @@ body::after {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
         z-index: 10;
+        filter: blur(0px);
     }
 
     /* Left Card: Slide left and shrink slightly */
@@ -681,6 +685,7 @@ body::after {
         /* Adjust percentages to control how much "peeks" out */
         transform: translate(-115%, -50%) scale(0.85); 
         z-index: 5;
+        filter: blur(4px);
     }
 
     /* Right Card: Slide right and shrink slightly */
@@ -688,6 +693,7 @@ body::after {
         opacity: 0.4;
         transform: translate(15%, -50%) scale(0.85);
         z-index: 5;
+        filter: blur(4px);
     }
 
     .coaching-card h2 {
