@@ -656,6 +656,9 @@ body::after {
         display: none;
         width: 100%;
         margin-bottom: 20px;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .carousel-card.active {
@@ -665,6 +668,7 @@ body::after {
     .carousel-wrapper {
         padding: 40px 0 20px;
         padding-bottom: 60px;
+        overflow: visible;
     }
         body {
         padding-bottom: 110px;
