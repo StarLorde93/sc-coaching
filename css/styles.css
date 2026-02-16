@@ -652,13 +652,13 @@ body::after {
 
     .carousel-card {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+        top: 50%;
+        left: 50%;
+        width: 90%;
         height: 320px;
         padding: 25px;
+        transform: translate(-50%, -50%);
         opacity: 0;
-        transform: none;
         transition: opacity 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -688,6 +688,7 @@ body::after {
         padding-bottom: 110px;
     }
 }
+
 
 
 .carousel-wrapper {
