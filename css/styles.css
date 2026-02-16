@@ -651,19 +651,28 @@ body::after {
     }
 
     .carousel-card {
-        position: relative;
-        opacity: 1 !important;
-        width: 85%;
-        margin-bottom: 20px;
-        top: auto;
-        left: auto;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 25px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    opacity: 1 !important;
+    width: 85%;
+    margin: 0 auto 20px auto;
+    padding: 25px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+    .carousel-card.left,
+    .carousel-card.right,
+    .carousel-card.active {
+        transform: none;
+        opacity: 1;
+    }
+    .coaching-card h2 {
+        font-size: 26px;
+        line-height: 1.2;
     }
 
     .carousel-card.active {
