@@ -176,7 +176,7 @@ carousel.addEventListener("pointerup", e => {
 
     const diff = e.clientX - startX;
 
-    if (diff > 80) {
+    if (diff > 50) {
         currentIndex = (currentIndex - 1 + cards.length) % cards.length;
     } 
     else if (diff < -80) {
