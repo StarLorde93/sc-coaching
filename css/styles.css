@@ -106,15 +106,6 @@ body::after {
     color: #cbd5e1;
 }
 
-.hero-meta {
-    margin-top: -12px;
-    margin-bottom: 22px;
-    color: #93c5fd;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-}
-
 
 .hero-image {
     position: relative;
@@ -189,12 +180,6 @@ body::after {
     margin-bottom: 25px;
 }
 
-.card-outcome {
-    color: #bfdbfe;
-    font-size: 14px;
-    margin-bottom: 16px;
-}
-
 .features-list {
     list-style: none;
 }
@@ -203,23 +188,6 @@ body::after {
     margin-bottom: 12px;
     font-size: 16px;
     color: #e2e8f0;
-}
-
-.card-cta {
-    margin-top: 8px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    border: 1px solid rgba(147, 197, 253, 0.5);
-    background: rgba(37, 99, 235, 0.2);
-    color: #dbeafe;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.card-cta:hover {
-    background: rgba(37, 99, 235, 0.35);
-    transform: translateY(-1px);
 }
 
 /* ================= MODAL ================= */
@@ -252,13 +220,6 @@ body::after {
     margin-bottom: 20px;
 }
 
-.form-helper {
-    margin-top: -10px;
-    margin-bottom: 16px;
-    color: #cbd5e1;
-    font-size: 14px;
-}
-
 .form-group {
     margin-bottom: 15px;
 }
@@ -275,25 +236,6 @@ body::after {
 .form-group input:focus {
     outline: none;
     border-color: #3b82f6;
-}
-
-.field-error {
-    display: block;
-    min-height: 18px;
-    margin-top: 6px;
-    color: #fda4af;
-    font-size: 12px;
-}
-
-.input-error {
-    border-color: #f87171 !important;
-}
-
-.payment-note {
-    margin-top: -2px;
-    margin-bottom: 8px;
-    color: #bfdbfe;
-    font-size: 13px;
 }
 
 .pay-btn {
@@ -514,21 +456,12 @@ body::after {
         font-size: 14px;
     }
 
-    .hero-meta {
-        font-size: 13px;
-        margin-bottom: 16px;
-    }
-
     .hero {
         padding: 60px 0;
     }
 
     .coaching-card {
         padding: 30px;
-    }
-
-    .card-outcome {
-        font-size: 13px;
     }
 
 
@@ -770,15 +703,6 @@ body::after {
     .coaching-card h2 {
         font-size: 24px;
         line-height: 1.2;
-        margin-bottom: 8px;
-    }
-
-    .card-subtitle {
-        margin-bottom: 16px;
-    }
-
-    .features-list li {
-        margin-bottom: 8px;
     }
 
     .carousel-wrapper {
