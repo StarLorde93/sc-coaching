@@ -48,12 +48,46 @@ window.addEventListener("click", (e) => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
 
-    if (!name || !email || !phone) {
-        alert("Please fill all fields.");
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const phoneError = document.getElementById("phoneError");
+
+    [nameInput, emailInput, phoneInput].forEach((input) => {
+        input.classList.remove("input-error");
+    });
+    [nameError, emailError, phoneError].forEach((errorEl) => {
+        errorEl.textContent = "";
+    });
+
+    let hasErrors = false;
+
+    if (!name) {
+        nameError.textContent = "Please enter your full name.";
+        nameInput.classList.add("input-error");
+        hasErrors = true;
+    }
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        emailError.textContent = "Please enter a valid email address.";
+        emailInput.classList.add("input-error");
+        hasErrors = true;
+    }
+
+    if (!phone || phone.replace(/\D/g, "").length < 10) {
+        phoneError.textContent = "Please enter a valid mobile number.";
+        phoneInput.classList.add("input-error");
+        hasErrors = true;
+    }
+
+    if (hasErrors) {
         return;
     }
 
