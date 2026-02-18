@@ -770,6 +770,15 @@ body::after {
     .coaching-card h2 {
         font-size: 24px;
         line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+        margin-bottom: 16px;
+    }
+
+    .features-list li {
+        margin-bottom: 8px;
     }
 
     .carousel-wrapper {
