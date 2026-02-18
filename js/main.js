@@ -15,6 +15,7 @@ const openBtnHero = document.getElementById("openConsultationHero");
 const openBtnMobile = document.getElementById("mobileStickyCTA");
 const closeBtn = document.getElementById("closeModal");
 const form = document.getElementById("consultationForm");
+const cardCTAButtons = document.querySelectorAll(".card-cta");
 
 // ===============================
 // Open Modal
@@ -32,6 +33,7 @@ function closeModal() {
 if (openBtnNav) openBtnNav.addEventListener("click", openModal);
 if (openBtnHero) openBtnHero.addEventListener("click", openModal);
 if (openBtnMobile) openBtnMobile.addEventListener("click", openModal);
+cardCTAButtons.forEach((button) => button.addEventListener("click", openModal));
 
 if (closeBtn) closeBtn.addEventListener("click", closeModal);
 

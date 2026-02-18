@@ -189,6 +189,12 @@ body::after {
     margin-bottom: 25px;
 }
 
+.card-outcome {
+    color: #bfdbfe;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
 .features-list {
     list-style: none;
 }
@@ -197,6 +203,23 @@ body::after {
     margin-bottom: 12px;
     font-size: 16px;
     color: #e2e8f0;
+}
+
+.card-cta {
+    margin-top: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(147, 197, 253, 0.5);
+    background: rgba(37, 99, 235, 0.2);
+    color: #dbeafe;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.card-cta:hover {
+    background: rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
 }
 
 /* ================= MODAL ================= */
@@ -503,6 +526,11 @@ body::after {
     .coaching-card {
         padding: 30px;
     }
+
+    .card-outcome {
+        font-size: 13px;
+    }
+
 
 }
 
